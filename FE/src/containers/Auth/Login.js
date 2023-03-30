@@ -5,13 +5,15 @@ import { push } from "connected-react-router";
 import * as actions from "../../store/actions";
 
 import "./Login.scss";
+import { handleLogin } from "../../services/userService";
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "hoidanit",
-      password: "asd123",
+      username: "",
+      password: "",
+      errMessage: "",
     };
   }
 
@@ -27,8 +29,28 @@ class Login extends Component {
     });
   };
 
-  handleLogin = () => {
-    console.log("STATE", this.state);
+  handleLogin = async () => {
+    this.setState({
+      errMessage: "",
+    });
+    try {
+      let data = await handleLogin(this.state.username, this.state.password);
+      if (data && data.errCode === 0) {
+        this.props.userLoginSuccess(data.user);
+      } else {
+        this.setState({
+          errMessage: data.errMessage,
+        });
+      }
+    } catch (error) {
+      if (error.response) {
+        if (error.response.data) {
+          this.setState({
+            errMessage: error.response.data.errMessage,
+          });
+        }
+      }
+    }
   };
 
   render() {
@@ -57,6 +79,9 @@ class Login extends Component {
                 value={this.state.password}
                 onChange={(event) => this.handleOnChangePassword(event)}
               />
+            </div>
+            <div className="col-12" style={{ color: "red" }}>
+              {this.state.errMessage}
             </div>
             <div className="col-12">
               <button
@@ -94,9 +119,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     navigate: (path) => dispatch(push(path)),
-    adminLoginSuccess: (adminInfo) =>
-      dispatch(actions.adminLoginSuccess(adminInfo)),
-    adminLoginFail: () => dispatch(actions.adminLoginFail()),
+    userLoginSuccess: (userInfo) =>
+      dispatch(actions.userLoginSuccess(userInfo)),
+    // userLoginFail: () => dispatch(actions.userLoginFail()),
   };
 };
 
