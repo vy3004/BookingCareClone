@@ -17,7 +17,7 @@ let createNewUser = async (data) => {
         phoneNumber: data.phoneNumber,
         address: data.address,
         gender: data.gender === "1" ? true : false,
-        roleID: data.roleID,
+        roleId: data.roleId,
         positionId: data.positionId,
       });
       resolve("Create new user successfully");
@@ -94,14 +94,11 @@ let updateUser = (data) => {
 let deleteUserById = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let user = await db.User.findOne({
+      await db.User.destroy({
         where: {
           id: id,
         },
       });
-      if (user) {
-        await user.destroy();
-      }
       resolve();
     } catch (error) {
       reject(error);
