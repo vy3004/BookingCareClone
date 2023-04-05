@@ -111,7 +111,7 @@ let createNewUser = (data) => {
         });
         resolve({
           errCode: 0,
-          errMessage: "OK",
+          errMessage: "Create user successfully!",
         });
       }
     } catch (error) {
@@ -143,6 +143,8 @@ let editUser = (data) => {
       if (user) {
         user.firstName = data.firstName;
         user.lastName = data.lastName;
+        user.phoneNumber = data.phoneNumber;
+        user.gender = data.gender;
         user.address = data.address;
         await user.save();
         resolve({
