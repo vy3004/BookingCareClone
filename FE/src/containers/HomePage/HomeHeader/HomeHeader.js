@@ -1,20 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "../Header/Header.scss";
-import op1 from "../../../assets/images/op1.png";
-import op2 from "../../../assets/images/op2.png";
-import op3 from "../../../assets/images/op3.png";
-import op4 from "../../../assets/images/op4.png";
-import op5 from "../../../assets/images/op5.png";
-import op6 from "../../../assets/images/op6.png";
-import op7 from "../../../assets/images/op7.jpg";
-import op8 from "../../../assets/images/op8.png";
-import op9 from "../../../assets/images/op9.jpg";
+import "./HomeHeader.scss";
+import op1 from "../../../assets/images/homepage_header/op1.png";
+import op2 from "../../../assets/images/homepage_header/op2.png";
+import op3 from "../../../assets/images/homepage_header/op3.png";
+import op4 from "../../../assets/images/homepage_header/op4.png";
+import op5 from "../../../assets/images/homepage_header/op5.png";
+import op6 from "../../../assets/images/homepage_header/op6.png";
+import op7 from "../../../assets/images/homepage_header/op7.jpg";
+import op8 from "../../../assets/images/homepage_header/op8.png";
+import op9 from "../../../assets/images/homepage_header/op9.jpg";
 import { FormattedMessage } from "react-intl";
 import { LANGUAGES } from "../../../utils/constant";
 import { changeLanguageApp } from "../../../store/actions";
 
-class Header extends Component {
+class HomeHeader extends Component {
   changeLanguage = (language) => {
     // fire redux event: actions
     this.props.changeLanguageAppRedux(language);
@@ -243,4 +243,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);

@@ -1,7 +1,10 @@
 .home-header-container {
   height: 70px;
   width: 100%;
-  //   padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background-color: white;
 
   .home-header-content {
     width: 100%;
@@ -76,7 +79,7 @@
         &.active {
           opacity: 1;
           font-weight: bold;
-          color: red;
+          color: #ffc10e;
         }
 
         &:hover {
@@ -92,7 +95,7 @@
         &.active {
           opacity: 1;
           font-weight: bold;
-          color: blue;
+          color: #49bce2;
         }
 
         &:hover {
@@ -108,14 +111,14 @@
 }
 
 .home-header-banner {
-  background: url("../../../assets/images/bookingcare_background.jpg");
+  background: url("../../../assets/images/homepage_header/bookingcare_background.jpg");
   height: 600px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 
   .banner-top {
-    height: 50%;
+    height: 60%;
     background-image: linear-gradient(
       rgba(0, 0, 0, 0.25),
       rgba(255, 255, 255, 0.1)
@@ -163,8 +166,9 @@
   }
 
   .banner-bottom {
-    height: 50%;
+    height: 40%;
     display: flex;
+    padding-bottom: 20px;
     flex-direction: column-reverse;
     background-image: linear-gradient(
       rgba(255, 255, 255, 0.1),
